@@ -32,13 +32,13 @@ SEXP points_within2(SEXP x_R,SEXP se_R,SEXP fi_R,SEXP return_list_R,SEXP return_
   SEXP nv; int *i_nv;
   int np=0;
   if(return_point_counts) {
-    PROTECT(nv = allocVector(INTSXP, nf/2)); np++;
+    PROTECT(nv = Rf_allocVector(INTSXP, nf/2)); np++;
     i_nv=INTEGER(nv);
     for(int i=0;i<nf/2;i++) { i_nv[i]=0; }
   } else if(return_list) {
-    PROTECT(nv = allocVector(VECSXP, nx)); np++;
+    PROTECT(nv = Rf_allocVector(VECSXP, nx)); np++;
   } else {
-    PROTECT(nv=allocVector(INTSXP,nx));  np++;
+    PROTECT(nv=Rf_allocVector(INTSXP,nx));  np++;
     i_nv=INTEGER(nv);
   }
 
@@ -62,7 +62,7 @@ SEXP points_within2(SEXP x_R,SEXP se_R,SEXP fi_R,SEXP return_list_R,SEXP return_
 	// assign null list?
       } else {
 	SEXP fil_R;
-	PROTECT(fil_R=allocVector(INTSXP,fset.size()));  np++;
+	PROTECT(fil_R=Rf_allocVector(INTSXP,fset.size()));  np++;
 	int* fil=INTEGER(fil_R);
 	int k=0;
 	for(set<int>::const_iterator ki=fset.begin();ki!=fset.end();++ki) {
